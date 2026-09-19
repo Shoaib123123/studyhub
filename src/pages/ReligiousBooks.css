@@ -1,0 +1,198 @@
+/* Religious Books Page */
+
+.page-container {
+  min-height: 100vh;
+  padding: 50px 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: #f8f7f4;
+}
+
+.page-container h1 {
+  margin: 0 0 35px;
+  color: #242424;
+  font-size: clamp(2rem, 4vw, 3rem);
+  font-weight: 700;
+  text-align: center;
+}
+
+.religion-cards {
+  width: 100%;
+  max-width: 950px;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(210px, 1fr));
+  gap: 26px;
+  justify-content: center;
+  align-items: stretch;
+}
+
+.religion-card {
+  min-height: 250px;
+  padding: 35px 24px;
+  border: 1px solid #e5e2dc;
+  border-radius: 18px;
+  background: #ffffff;
+  color: #252525;
+  cursor: pointer;
+  text-align: center;
+  box-shadow: 0 5px 18px rgba(30, 30, 30, 0.08);
+  transition: transform 0.25s ease, box-shadow 0.25s ease,
+    border-color 0.25s ease;
+}
+
+.religion-card:hover {
+  transform: translateY(-8px);
+  border-color: #b08d57;
+  box-shadow: 0 14px 30px rgba(30, 30, 30, 0.16);
+}
+
+.religion-card:focus-visible {
+  outline: 3px solid #b08d57;
+  outline-offset: 4px;
+}
+
+.religion-icon {
+  display: block;
+  margin-bottom: 18px;
+  font-size: 58px;
+  line-height: 1;
+}
+
+.religion-card h2 {
+  margin: 0 0 10px;
+  font-size: 1.45rem;
+  font-weight: 700;
+}
+
+.religion-card p {
+  margin: 0;
+  color: #6b6b6b;
+  font-size: 0.98rem;
+  line-height: 1.6;
+}
+
+/* Shown after a religion card is selected */
+
+.back-button {
+  align-self: flex-start;
+  margin: 0 0 20px;
+  padding: 10px 16px;
+  border: 1px solid #d8d4cd;
+  border-radius: 8px;
+  background: #ffffff;
+  color: #333333;
+  cursor: pointer;
+  font-size: 0.95rem;
+  transition: background 0.2s ease, color 0.2s ease;
+}
+
+.back-button:hover {
+  background: #b08d57;
+  border-color: #b08d57;
+  color: #ffffff;
+}
+
+.page-container > h2 {
+  width: 100%;
+  margin: 0 0 25px;
+  color: #242424;
+  text-align: center;
+}
+
+/* Tablet */
+
+@media (max-width: 800px) {
+  .page-container {
+    padding: 40px 20px;
+  }
+
+  .religion-cards {
+    grid-template-columns: repeat(2, minmax(200px, 1fr));
+    max-width: 650px;
+  }
+}
+
+/* Mobile */
+
+@media (max-width: 520px) {
+  .page-container {
+    padding: 32px 16px;
+  }
+
+  .page-container h1 {
+    margin-bottom: 26px;
+  }
+
+  .religion-cards {
+    grid-template-columns: 1fr;
+    max-width: 340px;
+    gap: 18px;
+  }
+
+  .religion-card {
+    min-height: 210px;
+    padding: 28px 20px;
+  }
+
+  .religion-icon {
+    font-size: 48px;
+  }
+
+  .back-button {
+    align-self: center;
+  }
+}
+.religion-books-section {
+  width: 100%;
+  max-width: 1200px;
+}
+
+.no-books-message {
+  margin-top: 30px;
+  text-align: center;
+  color: #666;
+  font-size: 1.05rem;
+}
+.pdf-books-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+  gap: 22px;
+  margin-top: 25px;
+}
+
+.pdf-book-card {
+  padding: 25px 20px;
+  border: 1px solid #e5e2dc;
+  border-radius: 14px;
+  background: #fff;
+  text-align: center;
+  box-shadow: 0 5px 18px rgba(30, 30, 30, 0.08);
+}
+
+.pdf-icon {
+  display: block;
+  margin-bottom: 14px;
+  font-size: 42px;
+}
+
+.pdf-book-card h3 {
+  min-height: 48px;
+  margin: 0 0 18px;
+  color: #242424;
+  font-size: 1.05rem;
+  text-transform: capitalize;
+}
+
+.read-book-button {
+  display: inline-block;
+  padding: 10px 18px;
+  border-radius: 8px;
+  background: #b08d57;
+  color: #fff;
+  text-decoration: none;
+}
+
+.read-book-button:hover {
+  background: #92703e;
+}
