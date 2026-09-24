@@ -1,5 +1,18 @@
+
 import React, { useState } from "react";
 import { Link, useLocation } from "react-router-dom";
+import {
+  Home,
+  BookOpen,
+  GraduationCap,
+  MessageCircle,
+  ShoppingCart,
+  Library,
+  LogIn,
+  UserPlus,
+  LogOut,
+} from "lucide-react";
+
 import useAuth from "../../hooks/useAuth";
 import useCart from "../../hooks/useCart";
 import "./Navbar.css";
@@ -48,43 +61,70 @@ function Navbar() {
         {/* DESKTOP NAVIGATION */}
         <nav className="navbar-links">
 
+          {/* HOME */}
           <Link
             to="/"
             className={isActive("/") ? "active" : ""}
+            onClick={closeMenu}
           >
-            Home
+            <Home size={18} />
+            <span>Home</span>
           </Link>
 
+          {/* SCHOOL SUBJECTS */}
           <Link
             to="/school-subjects"
             className={
               isActive("/school-subjects") ? "active" : ""
             }
+            onClick={closeMenu}
           >
-            School Subjects
+            <BookOpen size={18} />
+            <span>School Subjects</span>
           </Link>
 
+          {/* RELIGIOUS BOOKS */}
           <Link
             to="/religious-books"
             className={
               isActive("/religious-books") ? "active" : ""
             }
+            onClick={closeMenu}
           >
-            Religious Books
+            <BookOpen size={18} />
+            <span>Religious Books</span>
           </Link>
 
+          {/* HIGHER STUDIES */}
           <Link
             to="/HigherStudies"
             className={
               isActive("/HigherStudies") ? "active" : ""
             }
+            onClick={closeMenu}
           >
-            Higher Studies
+            <GraduationCap size={18} />
+            <span>Higher Studies</span>
+          </Link>
+
+          {/* HAVE A QUERY */}
+          <Link
+            to="/have-a-query"
+            className={
+              isActive("/have-a-query")
+                ? "query-link active"
+                : "query-link"
+            }
+            onClick={closeMenu}
+          >
+            <MessageCircle size={18} />
+            <span>Have a Query?</span>
           </Link>
 
           {/* LOGGED-IN ONLY */}
           {user && (
             <>
+              {/* CART */}
               <Link
                 to="/cart"
                 className={
@@ -92,28 +132,36 @@ function Navbar() {
                     ? "cart-link active"
                     : "cart-link"
                 }
+                onClick={closeMenu}
               >
-                🛒 Cart
+                <ShoppingCart size={18} />
+                <span>Cart</span>
+
                 <span className="cart-count">
                   {totalItems}
                 </span>
               </Link>
 
+              {/* MY LIBRARY */}
               <Link
                 to="/my-library"
                 className={
                   isActive("/my-library") ? "active" : ""
                 }
+                onClick={closeMenu}
               >
-                My Library
+                <Library size={18} />
+                <span>My Library</span>
               </Link>
 
+              {/* LOGOUT */}
               <button
                 type="button"
                 className="logout-button"
                 onClick={handleLogout}
               >
-                Logout
+                <LogOut size={18} />
+                <span>Logout</span>
               </button>
             </>
           )}
@@ -121,6 +169,7 @@ function Navbar() {
           {/* LOGGED-OUT ONLY */}
           {!user && (
             <>
+              {/* LOGIN */}
               <Link
                 to="/login"
                 className={
@@ -128,15 +177,20 @@ function Navbar() {
                     ? "login-link active"
                     : "login-link"
                 }
+                onClick={closeMenu}
               >
-                Login
+                <LogIn size={18} />
+                <span>Login</span>
               </Link>
 
+              {/* SIGN UP */}
               <Link
                 to="/signup"
                 className="signup-button"
+                onClick={closeMenu}
               >
-                Sign Up
+                <UserPlus size={18} />
+                <span>Sign Up</span>
               </Link>
             </>
           )}
@@ -165,77 +219,116 @@ function Navbar() {
           menuOpen ? "mobile-menu-open" : ""
         }`}
       >
-        <Link to="/" onClick={closeMenu}>
-          🏠 Home
+
+        {/* HOME */}
+        <Link
+          to="/"
+          onClick={closeMenu}
+        >
+          <Home size={19} />
+          <span>Home</span>
         </Link>
 
+        {/* SCHOOL SUBJECTS */}
         <Link
           to="/school-subjects"
           onClick={closeMenu}
         >
-          📖 School Subjects
+          <BookOpen size={19} />
+          <span>School Subjects</span>
         </Link>
 
+        {/* RELIGIOUS BOOKS */}
         <Link
           to="/religious-books"
           onClick={closeMenu}
         >
-          📚 Religious Books
+          <BookOpen size={19} />
+          <span>Religious Books</span>
         </Link>
 
+        {/* HIGHER STUDIES */}
         <Link
           to="/HigherStudies"
           onClick={closeMenu}
         >
-          🎓 Higher Studies
+          <GraduationCap size={19} />
+          <span>Higher Studies</span>
         </Link>
 
+        {/* HAVE A QUERY */}
+        <Link
+          to="/have-a-query"
+          onClick={closeMenu}
+          className={
+            isActive("/have-a-query")
+              ? "mobile-query-link active"
+              : "mobile-query-link"
+          }
+        >
+          <MessageCircle size={19} />
+          <span>Have a Query?</span>
+        </Link>
+
+        {/* LOGGED-IN MOBILE MENU */}
         {user ? (
           <>
+            {/* CART */}
             <Link
               to="/cart"
               onClick={closeMenu}
               className="mobile-cart-link"
             >
-              🛒 Cart
+              <ShoppingCart size={19} />
+              <span>Cart</span>
+
               <span className="cart-count">
                 {totalItems}
               </span>
             </Link>
 
+            {/* MY LIBRARY */}
             <Link
               to="/my-library"
               onClick={closeMenu}
             >
-              📁 My Library
+              <Library size={19} />
+              <span>My Library</span>
             </Link>
 
+            {/* LOGOUT */}
             <button
               type="button"
               className="mobile-logout-button"
               onClick={handleLogout}
             >
-              Logout
+              <LogOut size={19} />
+              <span>Logout</span>
             </button>
           </>
         ) : (
           <>
+            {/* LOGIN */}
             <Link
               to="/login"
               onClick={closeMenu}
             >
-              Login
+              <LogIn size={19} />
+              <span>Login</span>
             </Link>
 
+            {/* SIGN UP */}
             <Link
               to="/signup"
               onClick={closeMenu}
               className="mobile-signup-button"
             >
-              Sign Up
+              <UserPlus size={19} />
+              <span>Sign Up</span>
             </Link>
           </>
         )}
+
       </div>
     </header>
   );

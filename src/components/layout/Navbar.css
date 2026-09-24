@@ -450,3 +450,21 @@
     max-height: 52px;
   }
 }
+.navbar-links a,
+.navbar-links button {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+}
+
+.mobile-menu a,
+.mobile-menu button {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.navbar-links svg,
+.mobile-menu svg {
+  flex-shrink: 0;
+}

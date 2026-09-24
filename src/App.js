@@ -3,6 +3,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 import { AuthProvider } from "./context/AuthContext";
 import { CartProvider } from "./context/CartContext";
+import HaveAQuery from "./pages/HaveAQuery";
 
 import Home from "./pages/Home";
 import Login from "./pages/Login";
@@ -35,6 +36,10 @@ function App() {
             <Route path="/login" element={<Login />} />
 
             <Route path="/signup" element={<Signup />} />
+            <Route
+              path="/have-a-query"
+              element={<HaveAQuery />}
+            />
 
             <Route
               path="/school-subjects"
