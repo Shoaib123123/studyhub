@@ -1,0 +1,156 @@
+.library-page {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 50px 20px;
+}
+
+.library-header {
+  text-align: center;
+  margin-bottom: 40px;
+}
+
+.library-eyebrow {
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  margin-bottom: 8px;
+  opacity: 0.7;
+}
+
+.library-header h1 {
+  margin: 0 0 10px;
+  font-size: 36px;
+}
+
+.library-header p {
+  margin: 0;
+  opacity: 0.75;
+}
+
+.library-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 25px;
+}
+
+.library-card {
+  background: #ffffff;
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
+  border: 1px solid #eeeeee;
+}
+
+.library-image-wrapper {
+  width: 100%;
+  height: 260px;
+  background: #f5f5f5;
+  overflow: hidden;
+}
+
+.library-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.library-image-placeholder {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 70px;
+}
+
+.library-content {
+  padding: 22px;
+}
+
+.library-content h2 {
+  margin: 0 0 10px;
+  font-size: 21px;
+}
+
+.library-description {
+  color: #666;
+  line-height: 1.5;
+  margin-bottom: 12px;
+}
+
+.library-price {
+  font-weight: 700;
+  font-size: 18px;
+  margin-bottom: 18px;
+}
+
+.library-actions {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.library-download-button,
+.library-open-button {
+  border: none;
+  border-radius: 8px;
+  padding: 11px 15px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.library-download-button {
+  background: #222;
+  color: white;
+}
+
+.library-open-button {
+  background: #eeeeee;
+  color: #222;
+}
+
+.library-download-button:hover,
+.library-open-button:hover {
+  opacity: 0.85;
+}
+
+.library-no-file {
+  color: #b45309;
+  background: #fff7ed;
+  padding: 10px;
+  border-radius: 8px;
+  font-size: 14px;
+}
+
+@media (max-width: 600px) {
+  .library-page {
+    padding: 30px 15px;
+  }
+
+  .library-header h1 {
+    font-size: 28px;
+  }
+
+  .library-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .library-image-wrapper {
+    height: 230px;
+  }
+
+  .library-actions {
+    flex-direction: column;
+  }
+
+  .library-download-button,
+  .library-open-button {
+    width: 100%;
+  }
+}
