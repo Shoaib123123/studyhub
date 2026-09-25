@@ -1,3 +1,4 @@
+
 import React from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
@@ -10,6 +11,7 @@ import Login from "./pages/Login";
 import Signup from "./pages/Signup";
 import Cart from "./pages/Cart";
 import Payment from "./pages/Payment";
+import PaymentSuccess from "./pages/PaymentSuccess";
 import HigherStudies from "./pages/HigherStudies";
 import MyLibrary from "./pages/MyLibrary";
 import ProductDetail from "./pages/ProductDetail";
@@ -36,6 +38,7 @@ function App() {
             <Route path="/login" element={<Login />} />
 
             <Route path="/signup" element={<Signup />} />
+
             <Route
               path="/have-a-query"
               element={<HaveAQuery />}
@@ -88,6 +91,19 @@ function App() {
               element={
                 <ProtectedRoute>
                   <MyLibrary />
+                </ProtectedRoute>
+              }
+            />
+
+            {/* ==============================
+                PAYMENT SUCCESS
+            ============================== */}
+
+            <Route
+              path="/payment-success"
+              element={
+                <ProtectedRoute>
+                  <PaymentSuccess />
                 </ProtectedRoute>
               }
             />

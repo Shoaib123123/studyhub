@@ -126,7 +126,7 @@ Deno.serve(async (req) => {
 
           order_meta: {
             return_url:
-              "https://studyhub-seven-eosin.vercel.app/payment-success?order_id={order_id}",
+              "https://studyhub-git-main-shoaib-s-projects-2bd5116e.vercel.app/payment-success?order_id={order_id}",
           },
         }),
       }

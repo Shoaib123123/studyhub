@@ -1,92 +1,304 @@
+
+/* ==============================
+   PAYMENT PAGE
+============================== */
+
 .payment-page {
-  max-width: 720px;
-  margin: 0 auto;
-  padding: 40px 20px 64px;
+  max-width: 850px;
+  margin: 40px auto;
+  padding: 20px;
 }
 
 .payment-back-link {
   display: inline-block;
-  margin-bottom: 18px;
+  margin-bottom: 20px;
   color: #2563eb;
-  font-weight: 700;
   text-decoration: none;
+  font-weight: 600;
+  transition: 0.2s ease;
 }
 
+.payment-back-link:hover {
+  color: #1d4ed8;
+  transform: translateX(-3px);
+}
+
+
+/* ==============================
+   PAYMENT CARD
+============================== */
+
 .payment-card {
-  padding: 32px;
-  border: 1px solid #dbeafe;
-  border-radius: 16px;
   background: #ffffff;
-  box-shadow: 0 10px 30px rgba(30, 64, 175, 0.08);
+  border-radius: 18px;
+  padding: 35px;
+  box-shadow: 0 10px 35px rgba(0, 0, 0, 0.08);
+  border: 1px solid #e5e7eb;
 }
 
 .payment-eyebrow {
   margin: 0 0 8px;
   color: #2563eb;
-  font-size: 0.78rem;
-  font-weight: 800;
-  letter-spacing: 0.1em;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 1.5px;
 }
 
 .payment-card h1 {
-  margin: 0;
-  color: #172554;
+  margin: 0 0 10px;
+  font-size: 32px;
+  color: #111827;
 }
 
 .payment-description {
-  margin: 10px 0 26px;
-  color: #475569;
+  margin-bottom: 28px;
+  color: #6b7280;
+  line-height: 1.6;
 }
+
+
+/* ==============================
+   ORDER LIST
+============================== */
 
 .payment-order-list {
-  display: grid;
-  gap: 12px;
-}
-
-.payment-order-item,
-.payment-total {
   display: flex;
-  justify-content: space-between;
-  gap: 16px;
+  flex-direction: column;
+  gap: 12px;
+  margin-bottom: 20px;
 }
 
 .payment-order-item {
-  color: #334155;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 20px;
+  padding: 15px 16px;
+  background: #f8fafc;
+  border-radius: 10px;
+  border: 1px solid #e5e7eb;
 }
 
-.payment-total {
-  margin-top: 22px;
-  padding-top: 20px;
-  border-top: 1px solid #dbeafe;
-  color: #172554;
-  font-size: 1.15rem;
+.payment-order-item span {
+  color: #374151;
+  font-size: 15px;
 }
+
+.payment-order-item strong {
+  color: #111827;
+  white-space: nowrap;
+}
+
+
+/* ==============================
+   TOTAL
+============================== */
+
+.payment-total {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 22px 0;
+  padding: 18px 0;
+  border-top: 1px solid #e5e7eb;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.payment-total span {
+  font-size: 17px;
+  font-weight: 600;
+  color: #374151;
+}
+
+.payment-total strong {
+  font-size: 24px;
+  color: #111827;
+}
+
+
+/* ==============================
+   PAYMENT FORM
+============================== */
+
+.payment-form {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  margin-top: 25px;
+  margin-bottom: 22px;
+}
+
+.payment-field {
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+}
+
+.payment-field label {
+  font-size: 14px;
+  font-weight: 600;
+  color: #374151;
+}
+
+.payment-field input {
+  width: 100%;
+  box-sizing: border-box;
+  padding: 13px 15px;
+  border: 1px solid #d1d5db;
+  border-radius: 9px;
+  background: #ffffff;
+  color: #111827;
+  font-size: 15px;
+  outline: none;
+  transition: all 0.2s ease;
+}
+
+.payment-field input::placeholder {
+  color: #9ca3af;
+}
+
+.payment-field input:focus {
+  border-color: #2563eb;
+  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.12);
+}
+
+.payment-field input:disabled {
+  background: #f3f4f6;
+  cursor: not-allowed;
+}
+
+
+/* ==============================
+   ERROR MESSAGE
+============================== */
+
+.payment-error {
+  margin-bottom: 18px;
+  padding: 12px 14px;
+  border-radius: 8px;
+  background: #fef2f2;
+  border: 1px solid #fecaca;
+  color: #dc2626;
+  font-size: 14px;
+}
+
+
+/* ==============================
+   PAYMENT BUTTON
+============================== */
 
 .payment-button {
   width: 100%;
-  margin-top: 26px;
-  padding: 13px 18px;
-  border: 0;
-  border-radius: 9px;
+  border: none;
+  border-radius: 10px;
+  padding: 15px 20px;
   background: #2563eb;
   color: #ffffff;
-  cursor: pointer;
-  font-size: 1rem;
+  font-size: 16px;
   font-weight: 700;
+  cursor: pointer;
+  transition: all 0.2s ease;
 }
 
-.payment-button:hover {
+.payment-button:hover:not(:disabled) {
   background: #1d4ed8;
+  transform: translateY(-1px);
+}
+
+.payment-button:active:not(:disabled) {
+  transform: translateY(0);
 }
 
 .payment-button:disabled {
-  cursor: not-allowed;
   opacity: 0.65;
+  cursor: not-allowed;
 }
 
+
+/* ==============================
+   PAYMENT NOTE
+============================== */
+
 .payment-note {
-  margin: 14px 0 0;
-  color: #64748b;
-  font-size: 0.85rem;
+  margin: 15px 0 0;
   text-align: center;
+  color: #6b7280;
+  font-size: 13px;
+  line-height: 1.5;
+}
+
+
+/* ==============================
+   SUCCESS CARD
+============================== */
+
+.payment-success-card {
+  max-width: 600px;
+  margin: 60px auto;
+  padding: 40px;
+  background: #ffffff;
+  border-radius: 18px;
+  text-align: center;
+  box-shadow: 0 10px 35px rgba(0, 0, 0, 0.08);
+}
+
+.payment-success-card h1 {
+  margin-bottom: 15px;
+  color: #111827;
+}
+
+.payment-success-card p {
+  color: #6b7280;
+  line-height: 1.6;
+}
+
+.payment-success-card a {
+  display: inline-block;
+  margin-top: 20px;
+  padding: 12px 20px;
+  border-radius: 8px;
+  background: #2563eb;
+  color: white;
+  text-decoration: none;
+  font-weight: 600;
+}
+
+
+/* ==============================
+   MOBILE RESPONSIVE
+============================== */
+
+@media (max-width: 600px) {
+  .payment-page {
+    margin: 20px auto;
+    padding: 15px;
+  }
+
+  .payment-card {
+    padding: 22px 18px;
+    border-radius: 14px;
+  }
+
+  .payment-card h1 {
+    font-size: 27px;
+  }
+
+  .payment-order-item {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 6px;
+  }
+
+  .payment-total span {
+    font-size: 15px;
+  }
+
+  .payment-total strong {
+    font-size: 21px;
+  }
+
+  .payment-success-card {
+    margin: 30px 15px;
+    padding: 25px 18px;
+  }
 }
