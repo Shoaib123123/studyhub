@@ -54,16 +54,30 @@ function Payment() {
     try {
       setLoading(true);
 
+      // Send purchased products to Supabase
+      const items = cart.map((item) => ({
+        product_id: item.id,
+        quantity: item.quantity,
+      }));
+
       const { data, error: functionError } =
         await supabase.functions.invoke(
           "create-cashfree-order",
           {
             body: {
               amount: Number(totalPrice),
+
               customer_id: `customer_${Date.now()}`,
+
               customer_name: customerName.trim(),
+
               customer_email: customerEmail.trim(),
+
               customer_phone: customerPhone.trim(),
+
+              // IMPORTANT:
+              // These products will be saved with the Cashfree order
+              items,
             },
           }
         );
@@ -95,7 +109,9 @@ function Payment() {
       });
 
       await cashfree.checkout({
-        paymentSessionId: data.payment_session_id,
+        paymentSessionId:
+          data.payment_session_id,
+
         redirectTarget: "_self",
       });
     } catch (err) {
@@ -112,7 +128,10 @@ function Payment() {
 
   return (
     <main className="payment-page">
-      <Link to="/cart" className="payment-back-link">
+      <Link
+        to="/cart"
+        className="payment-back-link"
+      >
         ← Back to Cart
       </Link>
 

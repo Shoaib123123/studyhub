@@ -35,9 +35,15 @@ function App() {
 
             <Route path="/" element={<Home />} />
 
-            <Route path="/login" element={<Login />} />
+            <Route
+              path="/login"
+              element={<Login />}
+            />
 
-            <Route path="/signup" element={<Signup />} />
+            <Route
+              path="/signup"
+              element={<Signup />}
+            />
 
             <Route
               path="/have-a-query"
@@ -97,15 +103,12 @@ function App() {
 
             {/* ==============================
                 PAYMENT SUCCESS
+                NOT wrapped in ProtectedRoute
             ============================== */}
 
             <Route
               path="/payment-success"
-              element={
-                <ProtectedRoute>
-                  <PaymentSuccess />
-                </ProtectedRoute>
-              }
+              element={<PaymentSuccess />}
             />
 
           </Routes>
