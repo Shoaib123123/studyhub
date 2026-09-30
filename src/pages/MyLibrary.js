@@ -1,10 +1,14 @@
-
 import React, { useEffect, useState } from "react";
 import useAuth from "../hooks/useAuth";
 import { supabase } from "../lib/supabaseClient";
 import Loader from "../components/common/Loader";
 import EmptyState from "../components/common/EmptyState";
-import { downloadFile } from "../utils/downloadHelper";
+import {
+  Eye,
+  Download,
+  BookOpen,
+  ShoppingBag,
+} from "lucide-react";
 import "./MyLibrary.css";
 
 function MyLibrary() {
@@ -12,6 +16,7 @@ function MyLibrary() {
 
   const [books, setBooks] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [actionLoading, setActionLoading] = useState(null);
 
   useEffect(() => {
     async function loadLibrary() {
@@ -43,6 +48,118 @@ function MyLibrary() {
     loadLibrary();
   }, [user]);
 
+  // Get the correct PDF path from the product
+  const getFilePath = (book) => {
+    return book.pdf_path || book.book_file_path || null;
+  };
+
+  // Generate a fresh signed URL from Supabase Storage
+  const getPdfUrl = async (filePath) => {
+    if (!filePath) {
+      return null;
+    }
+
+    const { data, error } = await supabase.storage
+      .from("studyhub-pdfs")
+      .createSignedUrl(filePath, 60 * 60);
+
+    if (error) {
+      console.error("Supabase PDF URL error:", error);
+      return null;
+    }
+
+    return data?.signedUrl || null;
+  };
+
+  // VIEW PDF
+  const handleView = async (book) => {
+    const filePath = getFilePath(book);
+
+    if (!filePath) {
+      alert("PDF is not available for this product yet.");
+      return;
+    }
+
+    setActionLoading(`${book.id}-view`);
+
+    try {
+      const pdfUrl = await getPdfUrl(filePath);
+
+      if (!pdfUrl) {
+        alert("Unable to open the PDF.");
+        return;
+      }
+
+      window.open(
+        pdfUrl,
+        "_blank",
+        "noopener,noreferrer"
+      );
+    } catch (error) {
+      console.error("View PDF error:", error);
+      alert("Unable to open the PDF.");
+    } finally {
+      setActionLoading(null);
+    }
+  };
+
+  // DOWNLOAD PDF
+  const handleDownload = async (book) => {
+    const filePath = getFilePath(book);
+
+    if (!filePath) {
+      alert("PDF is not available for this product yet.");
+      return;
+    }
+
+    setActionLoading(`${book.id}-download`);
+
+    try {
+      const pdfUrl = await getPdfUrl(filePath);
+
+      if (!pdfUrl) {
+        alert("Unable to download the PDF.");
+        return;
+      }
+
+      const response = await fetch(pdfUrl);
+
+      if (!response.ok) {
+        throw new Error(
+          `Download failed: ${response.status}`
+        );
+      }
+
+      const blob = await response.blob();
+
+      const blobUrl = window.URL.createObjectURL(blob);
+
+      const link = document.createElement("a");
+
+      link.href = blobUrl;
+
+      link.download =
+        `${book.title || "StudyHub-Book"}.pdf`;
+
+      document.body.appendChild(link);
+
+      link.click();
+
+      document.body.removeChild(link);
+
+      window.URL.revokeObjectURL(blobUrl);
+
+    } catch (error) {
+      console.error("Download PDF error:", error);
+
+      alert(
+        "Unable to download the PDF. Please try again."
+      );
+    } finally {
+      setActionLoading(null);
+    }
+  };
+
   if (loading) {
     return <Loader />;
   }
@@ -60,7 +177,9 @@ function MyLibrary() {
 
   return (
     <main className="library-page">
+
       <div className="library-header">
+
         <p className="library-eyebrow">
           YOUR PURCHASES
         </p>
@@ -71,10 +190,13 @@ function MyLibrary() {
           Access and download your purchased books
           and study materials.
         </p>
+
       </div>
 
       <div className="library-grid">
+
         {books.map((item) => {
+
           const book = item.products;
 
           if (!book) {
@@ -83,39 +205,61 @@ function MyLibrary() {
                 className="library-card"
                 key={item.id}
               >
-                <h3>Product unavailable</h3>
+                <div className="library-content">
 
-                <p>
-                  Product ID: {item.product_id}
-                </p>
+                  <h3>
+                    Product unavailable
+                  </h3>
+
+                  <p>
+                    Product ID: {item.product_id}
+                  </p>
+
+                </div>
               </div>
             );
           }
+
+          const filePath = getFilePath(book);
 
           return (
             <div
               className="library-card"
               key={item.id}
             >
-              {/* Product Image */}
+
+              {/* IMAGE */}
+
               <div className="library-image-wrapper">
+
                 {book.image ? (
+
                   <img
                     src={book.image}
-                    alt={book.title || "StudyHub product"}
+                    alt={
+                      book.title ||
+                      "StudyHub product"
+                    }
                     className="library-image"
                   />
+
                 ) : (
+
                   <div className="library-image-placeholder">
-                    📚
+                    <BookOpen size={60} />
                   </div>
+
                 )}
+
               </div>
 
-              {/* Product Information */}
+              {/* CONTENT */}
+
               <div className="library-content">
+
                 <h2>
-                  {book.title || "Untitled Product"}
+                  {book.title ||
+                    "Untitled Product"}
                 </h2>
 
                 {book.description && (
@@ -127,45 +271,84 @@ function MyLibrary() {
                 {book.price !== undefined &&
                   book.price !== null && (
                     <p className="library-price">
-                      ₹{Number(book.price).toFixed(2)}
+                      ₹
+                      {Number(book.price).toFixed(2)}
                     </p>
                   )}
 
-                {/* PDF Actions */}
-                {book.file_url ? (
+                {/* PDF BUTTONS */}
+
+                {filePath ? (
+
                   <div className="library-actions">
+
+                    <button
+                      type="button"
+                      className="library-view-button"
+                      onClick={() =>
+                        handleView(book)
+                      }
+                      disabled={
+                        actionLoading ===
+                        `${book.id}-view`
+                      }
+                    >
+
+                      <Eye size={18} />
+
+                      {actionLoading ===
+                      `${book.id}-view`
+                        ? "Opening..."
+                        : "View PDF"}
+
+                    </button>
+
                     <button
                       type="button"
                       className="library-download-button"
                       onClick={() =>
-                        downloadFile(
-                          book.file_url,
-                          `${book.title || "StudyHub-Book"}.pdf`
-                        )
+                        handleDownload(book)
+                      }
+                      disabled={
+                        actionLoading ===
+                        `${book.id}-download`
                       }
                     >
-                      📥 Download PDF
+
+                      <Download size={18} />
+
+                      {actionLoading ===
+                      `${book.id}-download`
+                        ? "Downloading..."
+                        : "Download PDF"}
+
                     </button>
 
-                    <a
-                      href={book.file_url}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="library-open-button"
-                    >
-                      📖 Open PDF
-                    </a>
                   </div>
+
                 ) : (
-                  <p className="library-no-file">
-                    PDF is not available for this product yet.
-                  </p>
+
+                  <div className="library-no-file">
+
+                    <ShoppingBag size={18} />
+
+                    <span>
+                      PDF is not available
+                      for this product yet.
+                    </span>
+
+                  </div>
+
                 )}
+
               </div>
+
             </div>
           );
         })}
+
       </div>
+
     </main>
   );
 }
