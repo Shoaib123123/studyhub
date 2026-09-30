@@ -301,13 +301,13 @@ Deno.serve(async (req) => {
       .map((item: any) => ({
         user_id: user.id,
         product_id: Number(
-          item.product_id
+          item.product_id ?? item.id
         ),
       }))
       .filter(
         (item: any) =>
           Number.isInteger(
-            item.product_id
+            item.product_id ?? item.id
           )
       );
 
