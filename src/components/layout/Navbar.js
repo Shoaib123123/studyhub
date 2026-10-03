@@ -1,4 +1,3 @@
-
 import React, { useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import {
@@ -11,6 +10,7 @@ import {
   LogIn,
   UserPlus,
   LogOut,
+  Mail,
 } from "lucide-react";
 
 import useAuth from "../../hooks/useAuth";
@@ -154,6 +154,12 @@ function Navbar() {
                 <span>My Library</span>
               </Link>
 
+              {/* USER EMAIL */}
+              <div className="navbar-user-email">
+                <Mail size={17} />
+                <span>{user.email}</span>
+              </div>
+
               {/* LOGOUT */}
               <button
                 type="button"
@@ -221,10 +227,7 @@ function Navbar() {
       >
 
         {/* HOME */}
-        <Link
-          to="/"
-          onClick={closeMenu}
-        >
+        <Link to="/" onClick={closeMenu}>
           <Home size={19} />
           <span>Home</span>
         </Link>
@@ -295,6 +298,12 @@ function Navbar() {
               <Library size={19} />
               <span>My Library</span>
             </Link>
+
+            {/* USER EMAIL */}
+            <div className="mobile-user-email">
+              <Mail size={19} />
+              <span>{user.email}</span>
+            </div>
 
             {/* LOGOUT */}
             <button

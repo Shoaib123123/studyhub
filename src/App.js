@@ -17,10 +17,11 @@ import MyLibrary from "./pages/MyLibrary";
 import ProductDetail from "./pages/ProductDetail";
 import ReligiousBooks from "./pages/ReligiousBooks";
 import SchoolSubjects from "./pages/SchoolSubjects";
-
 import ProtectedRoute from "./components/common/ProtectedRoute";
-
 import "./App.css";
+import ExamReadyNotes from "./pages/ExamReadyNotes";
+import ExamReadyProducts from "./pages/ExamReadyProducts";
+import CompetitiveExamPapersPage from "./pages/CompetitiveExamPapersPage";
 
 function App() {
   return (
@@ -69,6 +70,10 @@ function App() {
               path="/product/:id"
               element={<ProductDetail />}
             />
+            <Route
+              path="/competitive-exams/:exam"
+              element={<CompetitiveExamPapersPage />}
+            />
 
             {/* ==============================
                 LOGGED-IN USER PAGES
@@ -99,6 +104,15 @@ function App() {
                   <MyLibrary />
                 </ProtectedRoute>
               }
+            />
+            <Route
+              path="/exam-ready-notes"
+              element={<ExamReadyNotes />}
+            />
+
+            <Route
+              path="/exam-ready-notes/:className"
+              element={<ExamReadyProducts />}
             />
 
             {/* ==============================

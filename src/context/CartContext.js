@@ -2,7 +2,6 @@ import React, {
   createContext,
   useCallback,
   useContext,
-  useEffect,
   useMemo,
   useState,
 } from "react";
@@ -10,28 +9,8 @@ import React, {
 const CartContext = createContext(null);
 
 export function CartProvider({ children }) {
-  const [cart, setCart] = useState(() => {
-    try {
-      const savedCart = localStorage.getItem("studyhub_cart");
-
-      if (savedCart) {
-        return JSON.parse(savedCart);
-      }
-
-      return [];
-    } catch (error) {
-      console.error("Error loading cart:", error);
-      return [];
-    }
-  });
-
-  useEffect(() => {
-    try {
-      localStorage.setItem("studyhub_cart", JSON.stringify(cart));
-    } catch (error) {
-      console.error("Error saving cart:", error);
-    }
-  }, [cart]);
+  // Cart starts empty every time the website starts
+  const [cart, setCart] = useState([]);
 
   const addToCart = useCallback((product) => {
     setCart((currentCart) => {
@@ -73,7 +52,6 @@ export function CartProvider({ children }) {
     [removeFromCart]
   );
 
-  // Stable function: same reference on every render
   const clearCart = useCallback(() => {
     setCart([]);
   }, []);
@@ -84,7 +62,8 @@ export function CartProvider({ children }) {
   );
 
   const totalPrice = cart.reduce(
-    (total, item) => total + Number(item.price || 0) * item.quantity,
+    (total, item) =>
+      total + Number(item.price || 0) * item.quantity,
     0
   );
 
@@ -110,7 +89,9 @@ export function CartProvider({ children }) {
   );
 
   return (
-    <CartContext.Provider value={value}>{children}</CartContext.Provider>
+    <CartContext.Provider value={value}>
+      {children}
+    </CartContext.Provider>
   );
 }
 

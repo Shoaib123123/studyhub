@@ -12,7 +12,12 @@ function Footer() {
         {/* Brand */}
         <div className="footer-brand">
           <Link to="/" className="footer-logo">
-            <span className="footer-logo-icon">📚</span>
+            <img
+              src="/mylogo.png"
+              alt="StudyHub"
+              className="footer-logo-image"
+            />
+
             <span>
               Study<span>Hub</span>
             </span>
@@ -30,7 +35,7 @@ function Footer() {
 
           <Link to="/">Home</Link>
           <Link to="/school-subjects">School Subjects</Link>
-          <Link to="/graduation">Graduation</Link>
+          <Link to="/graduation">Higher Studies</Link>
           <Link to="/religious-books">Religious Books</Link>
         </div>
 

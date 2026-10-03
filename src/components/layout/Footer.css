@@ -290,3 +290,18 @@
     padding-right: 18px;
   }
 }
+
+/* Footer Logo Image */
+
+.footer-logo {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.footer-logo-image {
+  width: 95px;
+  height: 90px;
+  object-fit: contain;
+  display: block;
+}

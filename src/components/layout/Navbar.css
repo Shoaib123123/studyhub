@@ -142,25 +142,7 @@
   gap: 6px;
 }
 
-.cart-count {
-  display: inline-flex;
-
-  align-items: center;
-  justify-content: center;
-
-  min-width: 20px;
-  height: 20px;
-
-  padding: 0 5px;
-
-  background: #2563eb;
-  color: white;
-
-  border-radius: 50px;
-
-  font-size: 11px;
-  font-weight: 700;
-}
+/* ============================= */ /* PROFESSIONAL CART COUNT */ /* ============================= */ .cart-count { display: inline-flex; align-items: center; justify-content: center; min-width: 20px; height: 20px; padding: 0 6px; margin-left: 3px; font-size: 11px; font-weight: 600; line-height: 1; border-radius: 10px; background: #f1f3f5; color: #555; box-sizing: border-box; }
 
 /* =========================================
    LOGIN
@@ -450,21 +432,152 @@
     max-height: 52px;
   }
 }
+/* =========================================
+   LUCIDE ICON ALIGNMENT
+========================================= */
+
 .navbar-links a,
 .navbar-links button {
   display: inline-flex;
   align-items: center;
+  justify-content: center;
   gap: 7px;
+}
+
+.navbar-links svg {
+  flex-shrink: 0;
+  stroke-width: 2;
 }
 
 .mobile-menu a,
 .mobile-menu button {
   display: flex;
   align-items: center;
-  gap: 8px;
+  gap: 9px;
+}
+
+.mobile-menu svg {
+  flex-shrink: 0;
+  stroke-width: 2;
+}
+
+/* =========================================
+   QUERY LINK
+========================================= */
+
+.query-link {
+  position: relative;
+  white-space: nowrap;
+}
+
+.query-link.active {
+  color: #2563eb !important;
+}
+
+.query-link.active::after {
+  width: 100% !important;
+}
+
+.mobile-query-link {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  text-decoration: none;
+  transition: all 0.2s ease;
+}
+
+.mobile-query-link.active {
+  color: #2563eb;
+  font-weight: 600;
+}
+
+/* =========================================
+   CART COUNT
+========================================= */
+
+.cart-link {
+  position: relative;
+}
+
+.cart-count {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 19px;
+  height: 19px;
+  padding: 0 5px;
+  margin-left: 2px;
+  border-radius: 50%;
+  font-size: 11px;
+  font-weight: 700;
+  line-height: 1;
+}
+
+/* =========================================
+   ICON HOVER EFFECT
+========================================= */
+
+.navbar-links a:hover svg,
+.navbar-links button:hover svg,
+.mobile-menu a:hover svg,
+.mobile-menu button:hover svg {
+  transform: translateY(-1px);
 }
 
 .navbar-links svg,
 .mobile-menu svg {
-  flex-shrink: 0;
+  transition: transform 0.2s ease;
+}
+
+
+/* ============================= */
+/* LOGGED-IN USER EMAIL */
+/* ============================= */
+
+.navbar-user-email {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 8px;
+  font-size: 14px;
+  color: #555;
+  white-space: nowrap;
+
+  /* Prevent long email from pushing Logout away */
+  width: 150px;
+  min-width: 0;
+  flex-shrink: 1;
+}
+
+.navbar-user-email span {
+  display: block;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  min-width: 0;
+}
+
+/* ============================= */
+/* MOBILE USER EMAIL */
+/* ============================= */
+
+.mobile-user-email {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 12px 18px;
+  font-size: 14px;
+  color: #555;
+  border-top: 1px solid #eee;
+  border-bottom: 1px solid #eee;
+
+  /* Long email handling */
+  min-width: 0;
+}
+
+.mobile-user-email span {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  min-width: 0;
 }

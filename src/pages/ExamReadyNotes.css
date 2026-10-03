@@ -1,0 +1,399 @@
+
+/* =========================================================
+   EXAM READY NOTES
+   ========================================================= */
+
+.exam-ready-section {
+  min-height: calc(100vh - 140px);
+
+  display: flex;
+  align-items: center;
+
+  padding: 45px 25px 65px;
+
+  background:
+    radial-gradient(
+      circle at 10% 10%,
+      rgba(108, 99, 255, 0.08),
+      transparent 30%
+    ),
+    radial-gradient(
+      circle at 90% 85%,
+      rgba(168, 85, 247, 0.08),
+      transparent 30%
+    ),
+    #f7f8fc;
+}
+
+.exam-ready-container {
+  width: min(950px, 100%);
+  margin: 0 auto;
+}
+
+
+/* =========================================================
+   HEADING
+   ========================================================= */
+
+.exam-ready-heading {
+  text-align: center;
+  margin-bottom: 35px;
+}
+
+.exam-ready-label {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+
+  margin-bottom: 12px;
+
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+
+  color: #6c63ff;
+}
+
+.exam-ready-container h1 {
+  margin: 0 0 10px;
+
+  font-size: clamp(32px, 5vw, 46px);
+  line-height: 1.1;
+  font-weight: 800;
+  letter-spacing: -1.5px;
+
+  color: #151d32;
+}
+
+.exam-ready-heading p {
+  max-width: 600px;
+
+  margin: 0 auto;
+
+  font-size: 15px;
+  line-height: 1.6;
+
+  color: #667085;
+}
+
+
+/* =========================================================
+   CARDS GRID
+   ========================================================= */
+
+.exam-ready-grid {
+  display: grid;
+
+  grid-template-columns: repeat(2, 1fr);
+
+  gap: 22px;
+
+  width: min(750px, 100%);
+
+  margin: 0 auto;
+}
+
+
+/* =========================================================
+   CARD
+   ========================================================= */
+
+.exam-ready-card {
+  position: relative;
+
+  display: flex;
+  align-items: center;
+
+  min-height: 175px;
+
+  padding: 25px;
+
+  overflow: hidden;
+
+  text-decoration: none;
+
+  background: #ffffff;
+
+  border: 1px solid #eaecf0;
+
+  border-radius: 18px;
+
+  box-shadow:
+    0 8px 25px rgba(20, 30, 60, 0.07);
+
+  transition:
+    transform 0.3s ease,
+    box-shadow 0.3s ease,
+    border-color 0.3s ease;
+}
+
+
+/* Card background glow */
+
+.exam-ready-card::before {
+  content: "";
+
+  position: absolute;
+
+  width: 180px;
+  height: 180px;
+
+  top: -100px;
+  right: -70px;
+
+  border-radius: 50%;
+
+  background: rgba(108, 99, 255, 0.08);
+
+  transition: transform 0.4s ease;
+}
+
+
+/* Bottom accent */
+
+.exam-ready-card::after {
+  content: "";
+
+  position: absolute;
+
+  left: 0;
+  bottom: 0;
+
+  width: 0;
+  height: 3px;
+
+  background: linear-gradient(
+    90deg,
+    #6c63ff,
+    #a855f7
+  );
+
+  transition: width 0.35s ease;
+}
+
+
+/* Hover */
+
+.exam-ready-card:hover {
+  transform: translateY(-6px);
+
+  border-color: rgba(108, 99, 255, 0.25);
+
+  box-shadow:
+    0 18px 40px rgba(20, 30, 60, 0.13);
+}
+
+.exam-ready-card:hover::before {
+  transform: scale(1.4);
+}
+
+.exam-ready-card:hover::after {
+  width: 100%;
+}
+
+
+/* =========================================================
+   ICON
+   ========================================================= */
+
+.exam-ready-icon {
+  position: relative;
+  z-index: 1;
+
+  flex-shrink: 0;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 64px;
+  height: 64px;
+
+  margin-right: 18px;
+
+  border-radius: 16px;
+
+  color: #ffffff;
+
+  background: linear-gradient(
+    135deg,
+    #6c63ff,
+    #a855f7
+  );
+
+  box-shadow:
+    0 8px 20px rgba(108, 99, 255, 0.22);
+
+  transition:
+    transform 0.3s ease;
+}
+
+.exam-ready-card:hover .exam-ready-icon {
+  transform: scale(1.06) rotate(-3deg);
+}
+
+
+/* =========================================================
+   CONTENT
+   ========================================================= */
+
+.exam-ready-content {
+  position: relative;
+  z-index: 1;
+
+  flex: 1;
+
+  min-width: 0;
+}
+
+.exam-ready-content h2 {
+  margin: 0 0 6px;
+
+  font-size: 25px;
+  font-weight: 750;
+
+  color: #151d32;
+}
+
+.exam-ready-content span {
+  display: block;
+
+  font-size: 13px;
+  line-height: 1.5;
+
+  color: #667085;
+}
+
+
+/* =========================================================
+   ARROW
+   ========================================================= */
+
+.exam-ready-arrow {
+  position: relative;
+  z-index: 1;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  flex-shrink: 0;
+
+  width: 38px;
+  height: 38px;
+
+  margin-left: 12px;
+
+  border-radius: 50%;
+
+  color: #6c63ff;
+
+  background: #f1f0ff;
+
+  transition:
+    transform 0.3s ease,
+    background 0.3s ease,
+    color 0.3s ease;
+}
+
+.exam-ready-card:hover .exam-ready-arrow {
+  transform: translateX(4px);
+
+  color: #ffffff;
+
+  background: #6c63ff;
+}
+
+
+/* =========================================================
+   MOBILE
+   ========================================================= */
+
+@media (max-width: 650px) {
+
+  .exam-ready-section {
+    min-height: auto;
+
+    padding: 40px 18px 55px;
+  }
+
+  .exam-ready-heading {
+    margin-bottom: 28px;
+  }
+
+  .exam-ready-container h1 {
+    font-size: 32px;
+  }
+
+  .exam-ready-heading p {
+    font-size: 14px;
+  }
+
+  .exam-ready-grid {
+    grid-template-columns: 1fr;
+
+    gap: 15px;
+
+    max-width: 450px;
+  }
+
+  .exam-ready-card {
+    min-height: 145px;
+
+    padding: 20px;
+  }
+
+  .exam-ready-icon {
+    width: 56px;
+    height: 56px;
+
+    margin-right: 15px;
+  }
+
+  .exam-ready-content h2 {
+    font-size: 22px;
+  }
+
+  .exam-ready-content span {
+    font-size: 12px;
+  }
+
+  .exam-ready-arrow {
+    width: 34px;
+    height: 34px;
+
+    margin-left: 8px;
+  }
+}
+
+
+/* =========================================================
+   VERY SMALL MOBILE
+   ========================================================= */
+
+@media (max-width: 380px) {
+
+  .exam-ready-section {
+    padding-left: 14px;
+    padding-right: 14px;
+  }
+
+  .exam-ready-card {
+    padding: 16px;
+  }
+
+  .exam-ready-icon {
+    width: 50px;
+    height: 50px;
+
+    margin-right: 12px;
+  }
+
+  .exam-ready-content h2 {
+    font-size: 20px;
+  }
+
+  .exam-ready-arrow {
+    display: none;
+  }
+}
